@@ -1,0 +1,62 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-title>
+            Video Converter
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <div class="input">
+        <ion-list>
+            <ion-item>
+                <ion-label position="stacked">URL de la vidéo
+                    <ion-text color="danger">*</ion-text>
+                </ion-label>
+                <ion-input required type="text" placeholder="URL.." [(ngModel)]="url"></ion-input>
+            </ion-item>
+            <ion-button expand="block" color="danger" (click)="getInfos()">Valider</ion-button>
+
+        </ion-list>
+    </div>
+    <ion-progress-bar type="indeterminate" *ngIf="loading"></ion-progress-bar>
+
+    <div *ngIf="video">
+        <ng-container *ngIf="video.status">
+            <ion-label color="success" style="display: flex; justify-content: center">Vidéo trouvée !</ion-label>
+            <ion-card>
+                <ion-card-header>
+                    <div class="image">
+                        <img src="{{video.thumbnail}}" alt="">
+                    </div>
+                    <h3>{{video.title}}</h3>
+                    <div class="infos">
+                        <ion-card-subtitle>{{video.view_count | number}} vue(s)</ion-card-subtitle>
+                        <div class="like">
+                            <ion-label color="success" class="info-like">{{video.like_count}}</ion-label>
+                            <ion-icon name="thumbs-up-outline" class="info-like" color="success"></ion-icon>
+                            <ion-icon name="thumbs-down-outline" class="info-like" color="danger"></ion-icon>
+                            <ion-label color="danger">{{video.dislike_count}}</ion-label>
+                        </div>
+                    </div>
+                </ion-card-header>
+            </ion-card>
+
+            <ion-card *ngFor="let stream of streams" style="padding: 15px">
+                <div class="stream-info">
+                    <div>
+                        <ion-card-title>{{stream.filesize_pretty}}</ion-card-title>
+                        <ion-card-subtitle>Extension: {{stream.extension}}</ion-card-subtitle>
+                        <ion-label>Format: {{stream.format}}</ion-label>
+                    </div>
+                    <div>
+                        <ion-button color="medium" fill="outline" href="{{stream.url}}"><i>Download</i></ion-button>
+                    </div>
+                </div>
+            </ion-card>
+        </ng-container>
+        <ion-label color="danger" class="error" *ngIf="!video.status">Erreur dans le chargement de la vidéo</ion-label>
+    </div>
+
+    <ion-label color="warning" class="error" *ngIf="!url">Vous devez saisir une URL</ion-label>
+</ion-content>
