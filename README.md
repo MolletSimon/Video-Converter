@@ -19,3 +19,5 @@ ionic serve
 ## License 
 MIT
 
+## Screenshots
+![Image of app](https://gitlab.com/S_Mollet/video-converter/-/blob/master/src/assets/images/HomePage.jpg)
