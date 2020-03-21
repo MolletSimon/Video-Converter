@@ -20,4 +20,4 @@ ionic serve
 MIT
 
 ## Screenshots
-![Image of app](https://gitlab.com/S_Mollet/video-converter/-/blob/master/src/assets/images/HomePage.jpg)
+![Image of app](https://gitlab.com/S_Mollet/video-converter/-/raw/master/src/assets/images/HomePage.jpg)
